@@ -5,6 +5,7 @@ import static org.junit.Assert.assertThat;
 import java.util.Set;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.hamcrest.core.Is;
 import org.junit.Test;
@@ -25,8 +26,8 @@ public class ImmutableSetListDeserializerTest {
 	public void testEmbeddedEquals() {
 		
 		ImmutableList.Builder<ImmutableSet<String>> listBuilder = new ImmutableList.Builder<ImmutableSet<String>>();
-		//for (ImmutableSet<String> i: 
-		listBuilder.add(ImmutableSet.copyOf(tester.list.get(0)));
+		for (int i = 0; i<tester.list.size(); i++)
+			listBuilder.add(ImmutableSet.copyOf(tester.list.get(i)));
 		ImmutableList<ImmutableSet<String>> immuList = listBuilder.build();
 		assertThat( immuList, Is.is( testSetList ));
 	}
